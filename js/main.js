@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Laboration 5 - Studentkortsgenerator
- * Namn: DITT NAMN
+ * Namn: Mikael Emanuelsson
  */
 
 // Hämta element från DOM
@@ -114,7 +114,10 @@ function deleteHistory() {
 
 
 // Eventlyssnare
-
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    console.log("Form submitted");
+});
 // När formuläret skickas:
 // - validera inmatningen
 // - skapa studentkort om valideringen lyckas
