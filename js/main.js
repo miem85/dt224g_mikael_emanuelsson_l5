@@ -33,6 +33,19 @@ let history = [];
  * @returns {boolean}
  */
 function validateForm() {
+    // Töm tidigare felmeddelanden
+    errors = [];
+
+    // Hämta namnet och ta bort mellanslag i början och slutet
+    const fullname = fullnameInput.value.trim();
+
+    // Kontrollera om namnfältet är tomt
+    if (fullname === "") {
+        errors.push("Du måste ange ett namn.");
+    }
+
+    // Returnera true om inga fel hittades, annars false
+    return errors.length === 0;
     // Kontrollera formulärets obligatoriska fält
 
     // Visa eventuella felmeddelanden
@@ -129,6 +142,9 @@ form.addEventListener("submit", function(event) {
     console.log("Email:", email);
     console.log("Phone:", phone);
     console.log("Font:", font);
+    
+    // Kontrollera om formuläret är giltigt
+    console.log("Form valid:", validateForm());
 });
 // När formuläret skickas:
 // - validera inmatningen
