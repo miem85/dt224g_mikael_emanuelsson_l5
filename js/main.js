@@ -36,12 +36,24 @@ function validateForm() {
     // Töm tidigare felmeddelanden
     errors = [];
 
-    // Hämta namnet och ta bort mellanslag i början och slutet
+    // Hämta formulärvärden och ta bort överflödiga mellanslag
     const fullname = fullnameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
 
     // Kontrollera om namnfältet är tomt
     if (fullname === "") {
         errors.push("Du måste ange ett namn.");
+    }
+
+    // Kontrollera om e-postfältet är tomt
+    if (email === "") {
+        errors.push("Du måste ange en e-postadress.");
+    }
+
+    // Kontrollera om telefonfältet är tomt
+    if (phone === "") {
+        errors.push("Du måste ange ett telefonnummer.");
     }
 
     // Returnera true om inga fel hittades, annars false
