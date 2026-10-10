@@ -99,8 +99,18 @@ function createStudentCard() {
     previewPhone.style.fontFamily = font;
 
     // Lägg till studentkortet i historiken
+    const student = {
+        fullname: fullname,
+        email: email,
+        phone: phone,
+        font: font
+    };
+
+    history.unshift(student);
+    console.log("History:", history);
 
     // Spara och uppdatera historiken
+    saveHistory();
 }
 
 
@@ -109,6 +119,7 @@ function createStudentCard() {
  */
 function saveHistory() {
     // Spara history i localStorage
+    localStorage.setItem("studentHistory", JSON.stringify(history));
 }
 
 
