@@ -117,13 +117,18 @@ function deleteHistory() {
 form.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    // Hämta namnet från formuläret och ta bort överflödiga mellanslag
+    // Hämta värdena från formuläret
+    // trim() tar bort överflödiga mellanslag i början och slutet
     const fullname = fullnameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const font = fontSelect.value;
 
-    // Skriv ut namnet i konsolen
+    // Skriv ut värdena i konsolen för att kontrollera att de fungerar
     console.log("Student name:", fullname);
-
-    console.log("Form submitted");
+    console.log("Email:", email);
+    console.log("Phone:", phone);
+    console.log("Font:", font);
 });
 // När formuläret skickas:
 // - validera inmatningen
