@@ -59,11 +59,6 @@ function validateForm() {
     // Returnera true om inga fel hittades, annars false
     displayErrors();
     return errors.length === 0;
-    // Kontrollera formulärets obligatoriska fält
-
-    // Visa eventuella felmeddelanden
-
-    // Returnera resultatet (true eller false) av valideringen
 }
 
 
@@ -88,8 +83,20 @@ function displayErrors() {
  */
 function createStudentCard() {
     // Hämta information från formuläret
+    const fullname = fullnameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const font = fontSelect.value;
 
     // Uppdatera studentkortet
+    previewFullname.textContent = fullname;
+    previewEmail.textContent = email;
+    previewPhone.textContent = phone;
+
+    // Ändra typsnitt på studentkortets uppgifter
+    previewFullname.style.fontFamily = font;
+    previewEmail.style.fontFamily = font;
+    previewPhone.style.fontFamily = font;
 
     // Lägg till studentkortet i historiken
 
@@ -161,9 +168,11 @@ form.addEventListener("submit", function(event) {
     console.log("Email:", email);
     console.log("Phone:", phone);
     console.log("Font:", font);
-    
+
     // Kontrollera om formuläret är giltigt
-    console.log("Form valid:", validateForm());
+    if (validateForm()) {
+        createStudentCard();
+    }
 });
 // När formuläret skickas:
 // - validera inmatningen
