@@ -106,8 +106,8 @@ function createStudentCard() {
         font: font
     };
 
+    // Lägg det senaste studentkortet först i historiken
     history.unshift(student);
-    console.log("History:", history);
 
     // Spara och uppdatera historiken
     saveHistory();
@@ -131,10 +131,10 @@ function loadHistory() {
     // Hämta eventuell sparad historik
     const savedHistory = localStorage.getItem("studentHistory");
 
-    // Uppdatera history
+    // Om historik finns, omvandla JSON-texten till en array
     if (savedHistory !== null) {
-        history = JSON.parse(savedHistory);
-    }
+    history = JSON.parse(savedHistory);
+}
 }
 
 
@@ -200,31 +200,20 @@ function deleteHistory() {
 
 
 // Eventlyssnare
+
+// När formuläret skickas:
+// - validera inmatningen
+// - skapa studentkort om valideringen lyckas
 form.addEventListener("submit", function(event) {
+    // Förhindra att sidan laddas om när formuläret skickas
     event.preventDefault();
 
-    // Hämta värdena från formuläret
-    // trim() tar bort överflödiga mellanslag i början och slutet
-    const fullname = fullnameInput.value.trim();
-    const email = emailInput.value.trim();
-    const phone = phoneInput.value.trim();
-    const font = fontSelect.value;
-
-    // Skriv ut värdena i konsolen för att kontrollera att de fungerar
-    console.log("Student name:", fullname);
-    console.log("Email:", email);
-    console.log("Phone:", phone);
-    console.log("Font:", font);
-
-    // Kontrollera om formuläret är giltigt
+    // Kontrollera formulärets inmatning
+    // Skapa studentkort endast om valideringen lyckas
     if (validateForm()) {
         createStudentCard();
     }
 });
-// När formuläret skickas:
-// - validera inmatningen
-// - skapa studentkort om valideringen lyckas
-
 
 // När användaren klickar på "Rensa"
 clearButton.addEventListener("click", function() {
@@ -240,4 +229,3 @@ deleteHistoryButton.addEventListener("click", function() {
 // - läs in och visa eventuell tidigare historik
 loadHistory();
 renderHistory();
-console.log("Loaded history:", history);
