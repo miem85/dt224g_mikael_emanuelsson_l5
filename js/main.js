@@ -174,8 +174,15 @@ function renderHistory() {
  */
 function clearForm() {
     // Återställ formulär och studentkort
+    form.reset();
+
+    previewFullname.textContent = "";
+    previewEmail.textContent = "";
+    previewPhone.textContent = "";
 
     // Rensa eventuella felmeddelanden
+    errors = [];
+    displayErrors();
 }
 
 
@@ -184,8 +191,11 @@ function clearForm() {
  */
 function deleteHistory() {
     // Radera sparad historik
+    localStorage.removeItem("studentHistory");
 
     // Uppdatera history och visningen på sidan
+    history = [];
+    renderHistory();
 }
 
 
@@ -217,10 +227,14 @@ form.addEventListener("submit", function(event) {
 
 
 // När användaren klickar på "Rensa"
-
+clearButton.addEventListener("click", function() {
+    clearForm();
+});
 
 // När användaren klickar på "Radera historik"
-
+deleteHistoryButton.addEventListener("click", function() {
+    deleteHistory();
+});
 
 // När sidan laddas:
 // - läs in och visa eventuell tidigare historik
